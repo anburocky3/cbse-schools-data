@@ -26,9 +26,9 @@ export default function Home() {
         <header className="mb-6">
           <h1 className="text-3xl font-bold">API Documentation</h1>
           <p className="mt-2 text-sm text-zinc-500">
-            This API exposes CBSE school data (sourced from the CBSE SARAS
-            service). Use the endpoints below to fetch school details, list
-            states, districts and schools by district.
+            This API contains 31649 CBSE school data (sourced from the CBSE
+            SARAS service). Use the endpoints below to fetch school details,
+            list states, districts and schools by district.
           </p>
         </header>
 

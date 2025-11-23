@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "grab:data": "node --experimental-strip-types --experimental-fetch scripts/fetchRemoteData.ts",
+    "merge:data": "node --experimental-strip-types --experimental-fetch scripts/mergeSchoolWiseData.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
-    "@types/cheerio": "^0.22.35",
     "cheerio": "^1.0.0-rc.12",
     "next": "16.0.3",
     "react": "19.2.0",
@@ -18,6 +19,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/cheerio": "^0.22.34",
+    "ts-node": "^10.9.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
