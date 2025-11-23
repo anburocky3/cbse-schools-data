@@ -9,7 +9,11 @@
 
 This api contains 31000+ cbse school data, like names, district, address, etc., including inauguration_date with current principal details across India. The data is sourced from the CBSE Saras website.
 
-> You can download the entire data-set from the `data/` folder after running the grab scripts.
+> You can download the [entire data-set here](https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/data/schools.json). If you are looking for Indian Colleges/Instituitions [Check here](https://github.com/anburocky3/indian-colleges-data/fork)
+
+### Screenshots
+
+![CBSE School List Data - Datasets](/screenshots/1.png)
 
 > Note: This project is not affiliated with or endorsed by any government entity. Data comes from publicly available pages and may change or break at any time.
 
@@ -21,26 +25,11 @@ This api contains 31000+ cbse school data, like names, district, address, etc., 
 - 👉 [GET - /api/states/{state} - Get districts of that state](https://cbse-schools.netlify.app/api/states/19)
 - 👉 [GET - GET /api/states/{state}/{district} - List all schools on that district](https://cbse-schools.netlify.app/api/states/19/03)
 
-> Calling `/api/schools` will return the offline snapshot from `data/schools.json` (several MB). Prefer filtered calls (by state/district/status) for faster responses.
+> Calling `/api/schools` will return the offline snapshot from `data/schools.json` (12.8MB). Prefer filtered calls (by state/district/status) for faster responses.
 
 - The downloader/merge scripts write per-status files and a merged snapshot at `data/schools.json`. Each per-status file has a `meta` object with `count` and `last_grabbed` timestamps. The merged file contains `meta` with `statuses` and `total_unique`.
 
-### Postman: import and run
-
-1. Open Postman and import the collection file `postman/CBSESchools.postman_collection.json` (or use the raw GitHub URL below).
-2. Import the environment `postman/CBSESchools.postman_environment.json` and set `base_url` to `http://localhost:3000` (or your deployed URL).
-3. Use the collection requests; example: `{{base_url}}/api/schools?state=Tamil&status=3`.
-
-Download raw collection and environment:
-
-- Collection: https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_collection.json
-- Environment: https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_environment.json
-
 ### ✅ [Download Postman Collections](https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_collection.json)
-
-### Screenshots
-
-![CBSE School List Data - Datasets](/screenshots/1.png)
 
 ## Quick start
 
