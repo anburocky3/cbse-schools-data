@@ -9,22 +9,32 @@
 
 This api contains 31000+ cbse school data, like names, district, address, etc., including inauguration_date with current principal details across India. The data is sourced from the CBSE Saras website.
 
-> You can download the entire data-set here
+> You can download the entire data-set from the `data/` folder after running the grab scripts.
 
 > Note: This project is not affiliated with or endorsed by any government entity. Data comes from publicly available pages and may change or break at any time.
 
 ## 🚀 Available Endpoints
 
-- 👉 [GET - List all CBSE Schools](https://cbse-schools.netlify.app/api/schools)
+- 👉 [GET - /api/schools - List all CBSE Schools](https://cbse-schools.netlify.app/api/schools)
 - 👉 [GET - /api/schools/{affiliatedId} - Get Detailed School Info](https://cbse-schools.netlify.app/api/schools/1930706)
 - 👉 [GET - /api/states - List available states ](https://cbse-schools.netlify.app/api/states)
 - 👉 [GET - /api/states/{state} - Get districts of that state](https://cbse-schools.netlify.app/api/states/19)
 - 👉 [GET - GET /api/states/{state}/{district} - List all schools on that district](https://cbse-schools.netlify.app/api/states/19/03)
 
-> Calling /api/schools will load 5MB+ of data, which is time consuming. Instead you can load schools by district api call.
+> Calling `/api/schools` will return the offline snapshot from `data/schools.json` (several MB). Prefer filtered calls (by state/district/status) for faster responses.
 
-- The `/api/schools` route is offline-first and serves the snapshot at `data/cbse-schools.json` by default. Use `?online=1` to fetch fresh upstream data.
-- The downloader/merge writes a small metadata file at `data/cbse-schools.meta.json` which contains `{ "last_grabbed": "ISO timestamp", "records": number }`. When present the `/api/schools` response will include this metadata and the route sets an `X-Data-Source` header to indicate `offline` or `online`.
+- The downloader/merge scripts write per-status files and a merged snapshot at `data/schools.json`. Each per-status file has a `meta` object with `count` and `last_grabbed` timestamps. The merged file contains `meta` with `statuses` and `total_unique`.
+
+### Postman: import and run
+
+1. Open Postman and import the collection file `postman/CBSESchools.postman_collection.json` (or use the raw GitHub URL below).
+2. Import the environment `postman/CBSESchools.postman_environment.json` and set `base_url` to `http://localhost:3000` (or your deployed URL).
+3. Use the collection requests; example: `{{base_url}}/api/schools?state=Tamil&status=3`.
+
+Download raw collection and environment:
+
+- Collection: https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_collection.json
+- Environment: https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_environment.json
 
 ### ✅ [Download Postman Collections](https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_collection.json)
 
@@ -39,6 +49,13 @@ This api contains 31000+ cbse school data, like names, district, address, etc., 
 ```bash
 npm install
 npm run dev
+```
+
+Run the data grab and merge scripts (optional — requires a valid RequestVerificationToken/cookie in `scripts/fetchRemoteData.ts`):
+
+```cmd
+npm run grab:data
+npm run merge:data
 ```
 
 2. Open the app in your browser:

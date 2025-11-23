@@ -104,6 +104,41 @@
         },
         "description": "Return schools for the given state and district. Replace both path variables with values returned from previous calls (states/districts)."
       }
+    },
+    {
+      "name": "List / Filter Schools",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/schools?state=Tamil&district=CHENNAI&status=3",
+          "host": ["{{base_url}}"],
+          "path": ["api", "schools"],
+          "query": [
+            {
+              "key": "state",
+              "value": "Tamil",
+              "description": "Filter by state (partial, case-insensitive)"
+            },
+            {
+              "key": "district",
+              "value": "CHENNAI",
+              "description": "Filter by district (case-insensitive)"
+            },
+            {
+              "key": "status",
+              "value": "3",
+              "description": "Status numeric (1,2,3) or text (Middle Class)"
+            }
+          ]
+        },
+        "description": "Return schools with optional filters: state, district, status. Example: ?state=Tamil&status=3"
+      }
     }
   ]
 }

@@ -23,14 +23,94 @@ export default function Home() {
       </h1>
 
       <main className="mx-auto w-full max-w-4xl bg-white dark:bg-indigo-950 px-8 py-10 rounded shadow-sm text-white">
+        <div className="bg-indigo-800  rounded mb-4 flex items-center justify-between">
+          <div className="p-4">
+            <strong className="text-lg">Note:</strong> If you are looking for
+            Indian colleges Data APIs, please visit{" "}
+            <a
+              href="https://github.com/anburocky3/indian-colleges-data"
+              className="underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Indian Colleges Data API
+            </a>{" "}
+          </div>
+          <a
+            href="https://indian-colleges-data.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-4 border-l border-indigo-600 pl-4 hover:bg-indigo-400"
+          >
+            Live Preview
+          </a>
+        </div>
+
         <header className="mb-6">
           <h1 className="text-3xl font-bold">API Documentation</h1>
           <p className="mt-2 text-sm text-zinc-500">
-            This API contains 31649 CBSE school data (sourced from the CBSE
-            SARAS service). Use the endpoints below to fetch school details,
-            list states, districts and schools by district.
+            This API contains <strong>31649 CBSE school data</strong> (sourced
+            from the CBSE SARAS service). Use the endpoints below to fetch
+            school details, list states, districts and schools by district.
           </p>
         </header>
+
+        <section className="mt-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-semibold flex items-center">
+              <span>GET /api/schools</span>
+            </h2>
+            <a
+              href="/api/schools"
+              target="_blank"
+              className="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-700 cursor-pointer"
+              title={"Open API in new tab"}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                className="inline-flex mr-1"
+              >
+                <path
+                  fill="currentColor"
+                  d="M5.616 20q-.691 0-1.153-.462T4 18.384V5.616q0-.691.463-1.153T5.616 4h5.115q.213 0 .357.143t.143.357t-.143.357T10.73 5H5.616q-.231 0-.424.192T5 5.616v12.769q0 .23.192.423t.423.192h12.77q.23 0 .423-.192t.192-.423v-5.116q0-.213.143-.357t.357-.143t.357.143t.143.357v5.116q0 .69-.462 1.152T18.384 20zM19 5.708l-8.908 8.908q-.14.14-.344.15t-.363-.15t-.16-.354t.16-.354L18.292 5H14.5q-.213 0-.357-.143T14 4.5t.143-.357T14.5 4h4.692q.349 0 .578.23t.23.578V9.5q0 .214-.143.357T19.5 10t-.357-.143T19 9.5z"
+                />
+              </svg>
+              View Example
+            </a>
+          </div>
+          <p className="mt-2 text-sm text-zinc-500">
+            Returns a list of CBSE schools with optional filters for state,
+            district, and status. It has 12.8MB of data.
+          </p>
+
+          <section className="mt-8">
+            <h2 className="text-2xl font-semibold">Examples</h2>
+            <p className="text-sm text-zinc-700 mt-2">Browser (client-side):</p>
+            <pre className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded mt-2 text-sm overflow-auto">{`fetch("/api/schools")
+  .then((r) => r.json())
+  .then((data) => console.log(data));`}</pre>
+
+            <p className="text-sm text-zinc-700 mt-3">Curl (cmd.exe):</p>
+            <pre className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded mt-2 text-sm overflow-auto">
+              curl http://localhost:3000/api/schools
+            </pre>
+          </section>
+
+          <p className="mt-3 text-sm text-green-600">
+            <strong>Example: </strong>
+            <a
+              href="/api/schools?state=Tamil&district=CHENNAI&status=3"
+              target="_blank"
+            >
+              <code>/api/schools?state=Tamil&district=CHENNAI&status=3</code>
+            </a>
+          </p>
+
+          <hr className="my-10 border border-gray-900" />
+        </section>
 
         {/* /api/schools/{affiliatedId} section */}
         <section className="mt-6">
@@ -246,7 +326,7 @@ export default function Home() {
               <span>GET /api/states/{`{state}`}</span>
             </h2>
             <a
-              href="/api/states/Tamil%20Nadu"
+              href="/api/states/19"
               target="_blank"
               className="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-700 cursor-pointer"
               title={"Open API in new tab"}
@@ -281,13 +361,13 @@ export default function Home() {
 
             <p className="text-sm text-zinc-700 mt-3">Curl (cmd.exe):</p>
             <pre className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded mt-2 text-sm overflow-auto">
-              curl http://localhost:3000/api/states/Tamil%20Nadu
+              curl http://localhost:3000/api/states/19
             </pre>
 
             <p className="mt-3 text-sm text-green-600">
               <strong>Example: </strong>
-              <a href="/api/states/Tamil%20Nadu" target="_blank">
-                <code>/api/states/Tamil%20Nadu</code>
+              <a href="/api/states/19" target="_blank">
+                <code>/api/states/19</code>
               </a>
             </p>
           </section>
@@ -301,7 +381,7 @@ export default function Home() {
               </span>
             </h2>
             <a
-              href="/api/states/Tamil%20Nadu/CHENNAI"
+              href="/api/states/19/13"
               target="_blank"
               className="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-700 cursor-pointer"
               title={"Open API in new tab"}
@@ -337,13 +417,13 @@ export default function Home() {
 
             <p className="text-sm text-zinc-700 mt-3">Curl (cmd.exe):</p>
             <pre className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded mt-2 text-sm overflow-auto">
-              curl http://localhost:3000/api/states/Tamil%20Nadu/CHENNAI
+              curl http://localhost:3000/api/states/19/13
             </pre>
 
             <p className="mt-3 text-sm text-green-600">
               <strong>Example: </strong>
-              <a href="/api/states/Tamil%20Nadu/CHENNAI" target="_blank">
-                <code>/api/states/Tamil%20Nadu/CHENNAI</code>
+              <a href="/api/states/19/13" target="_blank">
+                <code>/api/states/19/13</code>
               </a>
             </p>
           </section>
@@ -351,14 +431,16 @@ export default function Home() {
 
         <hr className="my-10 border border-gray-900" />
 
-        <section className="mt-10">
-          <h3 className="text-lg font-semibold">Postman collections</h3>
-          <p className="text-sm text-zinc-700 mt-2">
+        <section className="mt-10 text-zinc-400">
+          <h3 className="text-lg font-semibold text-white">
+            Postman collections
+          </h3>
+          <p className="text-sm  mt-2">
             Import the Postman collection files from the <code>postman/</code>{" "}
             folder. Use the provided environment (base_url) and run the
             requests.
           </p>
-          <ul className="mt-3 text-sm text-zinc-700 list-disc pl-6">
+          <ul className="mt-3 text-sm text-zinc-400 list-disc pl-6">
             <li>
               <a
                 href="https://raw.githubusercontent.com/anburocky3/cbse-schools-data/refs/heads/main/postman/CBSESchools.postman_collection.json"
@@ -368,6 +450,36 @@ export default function Home() {
               </a>
             </li>
           </ul>
+          <div className="mt-4 text-sm text-zinc-400">
+            <h4 className="font-medium">Quick Postman import</h4>
+            <ol className="list-decimal pl-6 mt-2">
+              <li>
+                Open Postman &rarr; Import &rarr; File and choose the collection
+                JSON.
+              </li>
+              <li>
+                Import the environment file
+                `postman/CBSESchools.postman_environment.json` and set
+                `base_url` to <code>http://localhost:3000</code>.
+              </li>
+              <li>
+                Run the requests. Example:{" "}
+                <code>{"{{base_url}}/api/schools?state=Tamil&status=3"}</code>
+              </li>
+            </ol>
+            <p className="mt-3 text-sm text-zinc-500">
+              Note: the collection uses the environment variable{" "}
+              <code>base_url</code> so you can point requests to local or
+              deployed instances.
+            </p>
+            <div className="mt-3">
+              <p className="text-sm text-zinc-400">Example curl (cmd.exe):</p>
+              <pre className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded mt-2 text-sm overflow-auto">
+                curl
+                &quot;http://localhost:3000/api/schools?state=Tamil&status=3&quot;
+              </pre>
+            </div>
+          </div>
         </section>
       </main>
 
