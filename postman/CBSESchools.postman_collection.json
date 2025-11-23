@@ -1,0 +1,109 @@
+{
+  "info": {
+    "name": "CBSE Schools API",
+    "_postman_id": "cbse-schools-data-collection",
+    "description": "Collection for CBSE School Data API (local/testing).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get School Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "{{base_url}}/api/schools/:affiliatedId",
+          "host": ["{{base_url}}"],
+          "path": ["api", "schools", ":affiliatedId"],
+          "variable": [
+            {
+              "key": "affiliatedId",
+              "value": "1930706",
+              "description": "CBSE affiliated id (numeric)"
+            }
+          ]
+        },
+        "description": "Fetch detailed information for a school by affiliated id. Replace `:affiliatedId` with the school's id."
+      }
+    },
+    {
+      "name": "List States",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/states",
+          "host": ["{{base_url}}"],
+          "path": ["api", "states"]
+        },
+        "description": "Return available states (name + slug). Use the slug or name when calling the state/district endpoints."
+      }
+    },
+    {
+      "name": "Get Districts for State",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/states/:state",
+          "host": ["{{base_url}}"],
+          "path": ["api", "states", ":state"],
+          "variable": [
+            {
+              "key": "state",
+              "value": "Tamil%20Nadu",
+              "description": "State name or slug (URL-encoded if needed)"
+            }
+          ]
+        },
+        "description": "Return districts for the provided state (use name or slug)."
+      }
+    },
+    {
+      "name": "List Schools in District",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/states/:state/:district",
+          "host": ["{{base_url}}"],
+          "path": ["api", "states", ":state", ":district"],
+          "variable": [
+            {
+              "key": "state",
+              "value": "Tamil%20Nadu",
+              "description": "State name or slug"
+            },
+            {
+              "key": "district",
+              "value": "CHENNAI",
+              "description": "District name (as returned by API) or slug"
+            }
+          ]
+        },
+        "description": "Return schools for the given state and district. Replace both path variables with values returned from previous calls (states/districts)."
+      }
+    }
+  ]
+}
